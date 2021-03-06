@@ -46,7 +46,6 @@ public class ItemController {
 	@GetMapping(value = "/items", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Collection<Items>> items() {
 		Collection<Items> resultItems = (Collection<Items>) this.itemRepository.findAll();
-		Collection<Carts> resultCarts = (Collection<Carts>) this.cartRepository.findAll();
 		return ResponseEntity.ok().body(resultItems);
 	}
 	
