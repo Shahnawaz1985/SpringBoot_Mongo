@@ -12,8 +12,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.context.request.WebRequest;
@@ -44,25 +42,18 @@ public class ItemController {
 	    this.errorAttributes = errorAttributes;
 	  }
 	
-	/**
-	@GetMapping(value = "/")
-	public ResponseEntity<Collection<Items>> items() {
-		System.out.println("********************Finding Items*******************************");
-		Collection<Items> resultItems = (Collection<Items>) this.itemRepository.findAll();
-		System.out.println("Captured Items : "+resultItems);
-		System.out.println("********************Items*******************************");
-		Collection<Carts> resultCarts = (Collection<Carts>) this.cartRepository.findAll();
-		return ResponseEntity.ok().body(resultItems);
-	}*/
 	
 	@GetMapping(value = "/items", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Collection<Items>> items() {
-		System.out.println("********************Finding Items*******************************");
 		Collection<Items> resultItems = (Collection<Items>) this.itemRepository.findAll();
-		System.out.println("Captured Items : "+resultItems);
-		System.out.println("********************Items*******************************");
 		Collection<Carts> resultCarts = (Collection<Carts>) this.cartRepository.findAll();
 		return ResponseEntity.ok().body(resultItems);
+	}
+	
+	@GetMapping(value = "/carts", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Collection<Carts>> carts() {
+		Collection<Carts> resultCarts = (Collection<Carts>) this.cartRepository.findAll();
+		return ResponseEntity.ok().body(resultCarts);
 	}
 	
 	 public String getErrorPath() {
