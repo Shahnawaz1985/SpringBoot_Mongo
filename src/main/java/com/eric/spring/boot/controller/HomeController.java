@@ -45,14 +45,11 @@ public class HomeController {
 		if(null == resultCarts) {
 			tempCart = new Carts("My Cart");
 			CartItem cartItem = new CartItem();
-			//cartItem.setItem(new Items("Roller pen", 43.98));
-			//cartItem.increment();
 			cartList = new ArrayList<CartItem>();
 			cartList.add(cartItem);
 			tempCart.setCartItems(cartList);
 			resultCarts = new ArrayList<Carts>();
 			resultCarts.add(tempCart);
-			//this.cartRepository.saveAll(resultCarts);
 		}else {
 			cartList = new ArrayList<CartItem>();
 			Carts tempCrt = null;
@@ -65,7 +62,6 @@ public class HomeController {
 			if(null != tempCrt) {
 				tempCrt.setCartItems(cartList);
 				resultCarts.add(tempCrt);
-				//this.cartRepository.saveAll(resultCarts);
 			}
 		}
 		
@@ -78,17 +74,13 @@ public class HomeController {
 		List<CartItem> cartList = null;
 		Carts tempCart = null;
 		if(null == resultCarts) {
-			System.out.println("Initiating My Cart creation!");
 			tempCart = new Carts("My Cart");
 			CartItem cartItem = new CartItem();
-			//cartItem.setItem(new Items("Roller pen", 43.98));
-			//cartItem.increment();
 			cartList = new ArrayList<CartItem>();
 			cartList.add(cartItem);
 			tempCart.setCartItems(cartList);
 			resultCarts = new ArrayList<Carts>();
 			resultCarts.add(tempCart);
-			//this.cartRepository.saveAll(resultCarts);
 		}else {
 			System.out.println("Updating My Cart!");
 			for(Carts cts : resultCarts) {
@@ -129,7 +121,6 @@ public class HomeController {
 			System.out.println("Items : "+items);
 			for(Items itms : items) {
 				if(itms.getId().equals(id)) {
-					System.out.println("Item found for null != cart : "+itms.getId());
 					itm = itms;
 					cartItem.setItem(itms);
 					cartItem.increment();
@@ -150,9 +141,6 @@ public class HomeController {
 				cart.setCartItems(cartItmList);
 			}
 			this.cartRepository.save(cart);
-			System.out.println("Updated cartItem : "+cartItem);
-			System.out.println("Updated cart : "+cart);
-			System.out.println("Updated cartItemList : "+cart.getCartItems());
 		}else {
 				cart = new Carts("My Cart");
 				List<CartItem> crtItms = new ArrayList<CartItem>();
@@ -162,15 +150,11 @@ public class HomeController {
 				Collection<Items> items = (Collection<Items>) this.itemRepository.findAll();
 				for(Items itms : items) {
 					if(itms.getId().equals(id)) {
-						System.out.println("Item found : "+itms.getId());
 						cartItem.setItem(itms);
 						cartItem.increment();
 						break;
 					}
 				}
-				System.out.println("Updated cartItem : "+cartItem);
-				System.out.println("Updated cart : "+cart);
-				System.out.println("Updated cartItemList : "+crtItms);
 				this.cartRepository.save(cart);
 			}
 		
