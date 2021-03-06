@@ -40,7 +40,7 @@ public class MongoDBConfiguration extends AbstractMongoClientConfiguration  {
     }
     
     protected String getMappingBasePackage() {
-        return "com.eric.spring.boot.reactive.collections";
+        return "com.eric.spring.boot.collections";
     }
     
     
