@@ -7,7 +7,6 @@
 <body>
     <h1>Spring Boot MongoDB Interaction Example!</h1>
 
-    <!-- tag::1[] -->
     <h2>Inventory Management Sample:</h2>
     <table>
         <thead>
@@ -35,9 +34,7 @@
         </tr>
         </tbody>
     </table>
-    <!-- end::1[] -->
 
-    <!-- tag::2[] -->
     <h2>My Cart</h2>
     <table>
         <thead>
@@ -48,14 +45,17 @@
             </tr>
         </thead>
         <tbody>
-        <tr th:each="cartItem : ${cart}">
+        <tr th:each="cartItem, stat : ${myCartItems}">
             <td th:text="${cartItem.item.id}"></td>
             <td th:text="${cartItem.item.name}"></td>
-            <td th:text="${cartItem.quantity}"></td>
+           <td th:text="*{cartItem.quantity}">
         </tr>
+        <!-- <tr th:each="crtItem, stat : *{cart.cartItems}">
+            <td th:text="${crtItem[__{stat.index}__].id}"></td>
+            <td th:text="${crtItem[__{stat.index}__].name}"></td>
+           <td th:text="*{crtItem.quantity}">
+        </tr>-->
         </tbody>
     </table>
-    <!-- end::2[] -->
-
 </body>
 </html>
